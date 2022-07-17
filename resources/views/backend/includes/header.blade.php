@@ -53,6 +53,9 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('admin.user.index') }}"><i
                                         class="icon-user"></i> Profil</a>
+                            </li><li>
+                                <a class="dropdown-item" href="{{ route('password.confirm') }}"><i
+                                        class="icon-lock"></i> Ekranı Kilitle</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#"><i class="icon-settings"></i> Settings</a>

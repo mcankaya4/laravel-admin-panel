@@ -1,36 +1,32 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+<!-- Session Status -->
+{{--<x-auth-session-status class="mb-4" :status="session('status')" />--}}
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+
+@extends('backend.layouts.auth')
+
+@section('content')
+    <h3 class="text-center"><small>Şifremi Sıfırla</small></h3>
+    <br>
+    @if(session('status'))
+        <div class="alert alert-info">
+            Şifre sıfırlama e-postası gönderildi.
         </div>
+    @endif
+    <form method="POST" action="{{ route('password.email') }}" role="form">
+        @csrf
+        <div class="form-group group-icon @if($errors->has('email')) has-error @endif">
+            <input id="emailid" type="email" name="email" placeholder="Email Adresi" class="form-control">
+            <span class="icon-envelope text-muted icon-input"></span>
+            @if($errors->has('email'))
+                <span class="text-danger">{{ $errors->first('email') }}</span>
+            @endif
+        </div>
+        <div class="clearfix">
+            <button type="submit" class="btn btn-block btn-rounded box-shadow btn-primary">Şifremi Sıfırla
+            </button>
+        </div>
+        <hr>
+        <p class="text-center"><a href="{{ route('login') }}" class="text-muted">Giriş Sayfasına Git</a></p>
+    </form>
+@endsection
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
