@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>Blize - Bootstrap 4 Hospital Admin Dashboard Template</title>
+    <title>Blize - Admin Dashboard</title>
     <!-- Favicon-->
     <link rel="icon" href="{{ asset('backend/assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- Plugins Core Css -->
@@ -31,5 +30,4 @@
 <!-- Extra page Js -->
 <script src="{{ asset('backend/assets/js/pages/examples/pages.js') }}"></script>
 </body>
-
 </html>
