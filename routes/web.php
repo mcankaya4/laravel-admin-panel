@@ -27,25 +27,26 @@ Route::get('/', function () {
 });
 
 
+
 Route::middleware('auth')
     ->prefix('admin')
     ->as('admin.')
-    ->group(function (){
+    ->group(function () {
 
         Route::controller(BackendIndex::class)
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
             });
 
         Route::prefix('laravel-filemanager')
-            ->group(function (){
+            ->group(function () {
                 \UniSharp\LaravelFilemanager\Lfm::routes();
             });
 
         Route::controller(BackendService::class)
             ->prefix('service')
             ->as('service.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
@@ -57,7 +58,7 @@ Route::middleware('auth')
         Route::controller(BackendCategory::class)
             ->prefix('category')
             ->as('category.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::post('/store', 'store')->name('store');
                 Route::get('/edit/{id}', 'edit')->name('edit');
@@ -68,7 +69,7 @@ Route::middleware('auth')
         Route::controller(BackendPortfolio::class)
             ->prefix('portfolio')
             ->as('portfolio.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
@@ -80,7 +81,7 @@ Route::middleware('auth')
         Route::controller(BackendSlider::class)
             ->prefix('slider')
             ->as('slider.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/edit', 'edit')->name('edit');
                 Route::post('/update/{id}', 'update')->name('update');
             });
@@ -88,7 +89,7 @@ Route::middleware('auth')
         Route::controller(BackendBreadCrumb::class)
             ->prefix('breadcrumb')
             ->as('breadcrumb.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
@@ -98,7 +99,7 @@ Route::middleware('auth')
         Route::controller(BackendAbout::class)
             ->prefix('about')
             ->as('about.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/edit', 'edit')->name('edit');
                 Route::post('/update', 'update')->name('update');
             });
@@ -106,7 +107,7 @@ Route::middleware('auth')
         Route::controller(BackendUser::class)
             ->prefix('user')
             ->as('user.')
-            ->group(function (){
+            ->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/edit', 'edit')->name('edit');
                 Route::get('/editpassword', 'editpassword')->name('edit.password');
@@ -117,5 +118,4 @@ Route::middleware('auth')
     });
 
 
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,35 +1,38 @@
 @extends('backend.layouts.auth')
 
+
 @section('content')
-    <h3 class="text-center"><small>Şifremi Sıfırla</small></h3>
-    <br>
-    <form method="POST" action="{{ route('password.update') }}">
-    @csrf
+    <form class="login100-form" method="POST" action="{{ route('password.update') }}">
+        @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
-        <div class="form-group group-icon @if($errors->has('email')) has-error @endif">
-            <input id="emailid" type="email" name="email" value="{{ $request->get('email') }}" class="form-control">
-            <span class="icon-envelope text-muted icon-input"></span>
-            @if($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
+        <span class="login100-form-title p-b-45">Yeni Şifre Belirle</span>
+        @if($errors->any())
+            <div class="alert alert-danger rounded">
+                @foreach ($errors->all() as $error)
+                    * {{ $error }} <br>
+                @endforeach
+            </div>
+        @endif
+        <div class="wrap-input100">
+            <input class="input100" type="text" name="email" placeholder="Email" value="{{ $request->get('email') }}">
         </div>
-        <div class="form-group group-icon @if($errors->has('password')) has-error @endif">
-            <input autofocus id="emailid" type="password" name="password" placeholder="Yeni şifre" class="form-control">
-            <span class="icon-lock text-muted icon-input"></span>
-            @if($errors->has('password'))
-                <span class="text-danger">{{ $errors->first('password') }}</span>
-            @endif
+        <div class="wrap-input100">
+            <input class="input100" type="password" name="password" placeholder="Yeni Şifre">
         </div>
-        <div class="form-group group-icon @if($errors->has('password_confirmation')) has-error @endif">
-            <input id="emailid" type="password" name="password_confirmation" placeholder="Yeni şifre tekrar" class="form-control">
-            <span class="icon-lock text-muted icon-input"></span>
-            @if($errors->has('password_confirmation'))
-                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
-            @endif
+        <div class="wrap-input100">
+            <input class="input100" type="password" name="password_confirmation" placeholder="Yeni Şifre Tekrar">
         </div>
-        <div class="clearfix">
-            <button type="submit" class="btn btn-block btn-rounded box-shadow btn-primary">Şifremi Sıfırla
+        <div class="container-login100-form-btn p-t-30">
+            <button type="submit" class="login100-form-btn">
+                Kaydet
             </button>
+        </div>
+        <div class="w-full p-t-25 text-center">
+            <div>
+                <a href="{{ route('login') }}" class="txt1">
+                    Giriş Yap?
+                </a>
+            </div>
         </div>
     </form>
 @endsection

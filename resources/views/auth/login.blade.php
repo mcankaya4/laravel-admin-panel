@@ -1,44 +1,51 @@
-<!-- Session Status -->
-{{--        <x-auth-session-status class="mb-4" :status="session('status')" />--}}
-
-<!-- Validation Errors -->
-{{--        <x-auth-validation-errors class="mb-4" :errors="$errors" />--}}
-
-
 @extends('backend.layouts.auth')
 
 @section('content')
-    <h3 class="text-center"><small>Admin Girişi</small></h3>
-    <br>
-    <form method="POST" action="{{ route('login') }}" role="form">
+    <form method="POST" action="{{ route('login') }}" class="login100-form">
         @csrf
-        <div class="form-group">
-            <label for="exampleuser1">Email Adresi</label>
-            <div class="group-icon">
-                <input id="exampleuser1" name="email" type="text" placeholder="Email" class="form-control" required="">
-                <span class="icon-envelope text-muted icon-input"></span>
+        <span class="login100-form-title p-b-45">Admin Girişi</span>
+        @if(session('status'))
+            <div class="alert alert-success rounded">
+                <strong>İşlem başarılı!</strong> Yeni şifrenizle giriş yapabilirsiniz.
+            </div>
+        @endif
+        @if($errors->any())
+            <div class="alert alert-danger rounded">
+                @foreach ($errors->all() as $error)
+                    * {{ $error }} <br>
+                @endforeach
+            </div>
+        @endif
+        <div class="wrap-input100">
+            <input class="input100" type="text" name="email" placeholder="Email">
+        </div>
+        <div class="wrap-input100">
+            <input class="input100" type="password" name="password" placeholder="Şifre">
+        </div>
+        <div class="flex-sb-m w-full p-t-15 p-b-20">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember"> Beni Hatırla
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+            <div>
+                <a href="{{ route('password.request') }}" class="txt1">
+                    Şifremi unuttum?
+                </a>
             </div>
         </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Şifre</label>
-            <div class="group-icon">
-                <input id="exampleInputPassword1" name="password" type="password" placeholder="Şifre"
-                       class="form-control">
-                <span class="icon-lock text-muted icon-input"></span>
-            </div>
+        <div class="container-login100-form-btn">
+            <button type="submit" class="login100-form-btn">
+                Giriş
+            </button>
         </div>
-        <div class="clearfix">
-            <div class="float-left">
-                <div class="checkbox checkbox-primary margin-r-5">
-                    <input id="checkbox2" name="remember" type="checkbox" checked>
-                    <label for="checkbox2"> Beni Hatırla </label>
-                </div>
-            </div>
-            <div class="float-right">
-                <button type="submit" class="btn btn-block btn-primary btn-rounded box-shadow">Giriş Yap</button>
-            </div>
+        <div class="text-center p-t-45 p-b-20">
+            <span class="txt2">
+                info@admin.com
+            </span>
         </div>
-        <hr>
-        <p class="text-center"><a href="{{ route('password.request') }}" class="text-muted">Şifremi unuttum!</a></p>
     </form>
 @endsection

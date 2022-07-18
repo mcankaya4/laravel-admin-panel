@@ -1,32 +1,41 @@
-<!-- Session Status -->
-{{--<x-auth-session-status class="mb-4" :status="session('status')" />--}}
-
-
 @extends('backend.layouts.auth')
 
 @section('content')
-    <h3 class="text-center"><small>Şifremi Sıfırla</small></h3>
-    <br>
-    @if(session('status'))
-        <div class="alert alert-info">
-            Şifre sıfırlama e-postası gönderildi.
-        </div>
-    @endif
-    <form method="POST" action="{{ route('password.email') }}" role="form">
+    <form class="login100-form" method="POST" action="{{ route('password.email') }}">
         @csrf
-        <div class="form-group group-icon @if($errors->has('email')) has-error @endif">
-            <input id="emailid" type="email" name="email" placeholder="Email Adresi" class="form-control">
-            <span class="icon-envelope text-muted icon-input"></span>
-            @if($errors->has('email'))
-                <span class="text-danger">{{ $errors->first('email') }}</span>
-            @endif
+        <span class="login100-form-title p-b-45">Şifremi Unuttum</span>
+        @if(session('status'))
+            <div class="alert alert-success rounded">
+                Şifre sıfırlama linki e-mail adresinize gönderildi.
+            </div>
+        @endif
+        @if($errors->any())
+            <div class="alert alert-danger rounded">
+                @foreach ($errors->all() as $error)
+                    * {{ $error }} <br>
+                @endforeach
+            </div>
+        @endif
+        <span class="error-subheader2 p-t-20 p-b-15">Kayıtlı email adresinizi yazınız.</span>
+        <div class="wrap-input100">
+            <input class="input100" type="text" name="email" placeholder="Email">
         </div>
-        <div class="clearfix">
-            <button type="submit" class="btn btn-block btn-rounded box-shadow btn-primary">Şifremi Sıfırla
+        <div class="container-login100-form-btn p-t-30">
+            <button type="submit" class="login100-form-btn">
+                Şifremi Sıfırla
             </button>
         </div>
-        <hr>
-        <p class="text-center"><a href="{{ route('login') }}" class="text-muted">Giriş Sayfasına Git</a></p>
+        <div class="w-full p-t-25 text-center">
+            <div>
+                <a href="{{ route('login') }}" class="txt1">
+                    Giriş Yap?
+                </a>
+            </div>
+        </div>
     </form>
 @endsection
+
+
+
+
 
