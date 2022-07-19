@@ -30,6 +30,9 @@ class SliderController extends Controller
         $update_item->desc = $request->desc;
         $update_item->video_url = $request->video_url;
         if ($request->image) {
+            $request->validate([
+                'image' => 'mimes:png,jpg,jpeg'
+            ]);
             File::delete(public_path($update_item->image));
             $extension = $request->image->getClientOriginalExtension();
             $filename = date('YmdHis-') . hexdec(uniqid()) . "." . $extension;

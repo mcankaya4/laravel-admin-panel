@@ -1,64 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Blize - Title</title>
-    <!-- Favicon-->
-    <link rel="icon" href="{{ asset('backend/assets/images/favicon.ico') }}" type="image/x-icon">
-    <!-- Plugins Core Css -->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet">
-    <!-- Custom Css -->
-    <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet" />
-    <!-- You can choose a theme from css/styles instead of get all themes -->
-    <link href="{{ asset('backend/assets/css/styles/all-themes.css') }}" rel="stylesheet" />
-
-    @yield('css-in')
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CalmUI Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('backend/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/vendors/jquery-toast-plugin/jquery.toast.min.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}"/>
 </head>
 
-<body class="light">
-<!-- #END# Page Loader -->
-<div class="overlay"></div>
-<!-- #END# Overlay For Sidebars -->
-<!-- Top Bar -->
+<body class="sidebar-light">
+<div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
 @include('backend.includes.header')
-<!-- #Top Bar -->
-<div>
+<!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
     @include('backend.includes.sidebar')
-</div>
-<section class="content">
-    <div class="container-fluid">
-        @yield('content')
+    <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+                @yield('content')
+            </div>
+            <!-- content-wrapper ends -->
+        @include('backend.includes.footer')
+        <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
     </div>
-</section>
-<script src="{{ asset('backend/assets/js/app.min.js') }}"></script>
-<!-- Custom Js -->
-<script src="{{ asset('backend/assets/js/admin.js') }}"></script>
-@yield('js-in')
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+<!-- plugins:js -->
+<script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{{ asset('backend/js/off-canvas.js') }}"></script>
+<script src="{{ asset('backend/js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('backend/js/template.js') }}"></script>
+<script src="{{ asset('backend/js/file-upload.js') }}"></script>
+<script src="{{ asset('backend/vendors/jquery-toast-plugin/jquery.toast.min.js') }}"></script>
 <script>
     @if(Session::has('message'))
     $.toast({
         heading: "{{ Session::get('title') }}",
         text: "{{ Session::get('message') }}",
-        position: 'top-right',
-        loaderBg: '#fff',
+        showHideTransition: 'slide',
         icon: "{{ Session::get('type') }}",
-        hideAfter: 3000,
-        stack: 1
-    });
+        loaderBg: '#f96868',
+        position: 'top-right'
+    })
     @endif
     @if($errors->any())
     $.toast({
         heading: "Dikkat!",
         text: "Eksik veya hatalı form içeriği girdiniz.",
-        position: 'top-right',
-        loaderBg: '#fff',
+        showHideTransition: 'slide',
         icon: "warning",
-        hideAfter: 3000,
-        stack: 1
-    });
+        loaderBg: '#f96868',
+        position: 'top-right'
+    })
     @endif
 </script>
+@yield('js-in')
+<!-- endinject -->
 </body>
+
 </html>
+
+
+

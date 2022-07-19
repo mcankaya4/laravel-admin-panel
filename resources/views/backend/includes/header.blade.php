@@ -1,187 +1,102 @@
-<nav class="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a href="#" onclick="return false;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-            <a href="#" onclick="return false;" class="bars"></a>
-            <a class="navbar-brand" href="{{ route('admin.index') }}">
-                <img src="{{ asset('backend/assets/images/logo.png') }}" alt=""/>
-                <span class="logo-name">Panel</span>
-            </a>
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="navbar-menu-wrapper d-flex align-items-stretch justify-content-between">
+        <ul class="navbar-nav mr-lg-2 d-none d-lg-flex">
+            <li class="nav-item nav-toggler-item">
+                <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </li>
+        </ul>
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo" href="{{ route('admin.index') }}"><img src="{{ asset('backend/images/logo.svg') }}" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="{{ route('admin.index') }}"><img src="{{ asset('backend/images/logo-mini.svg') }}" alt="logo"/></a>
         </div>
-        <div class="navbar-collapse collapse" id="navbar-collapse" style="">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a href="#" onclick="return false;" class="sidemenu-collapse">
-                        <i data-feather="align-justify"></i>
+        <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+                    <i class="mdi mdi-bell-outline mx-0"></i>
+                    <span class="count"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                    <a class="dropdown-item">
+                        <p class="mb-0 font-weight-normal float-left">You have 4 new notifications
+                        </p>
+                        <span class="badge badge-pill badge-warning float-right">View all</span>
                     </a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Full Screen Button -->
-                <li class="fullscreen">
-                    <a href="javascript:;" class="fullscreen-btn">
-                        <i data-feather="maximize"></i>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-success">
+                                <i class="mdi mdi-information mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-medium">Application Error</h6>
+                            <p class="font-weight-light small-text mb-0">
+                                Just now
+                            </p>
+                        </div>
                     </a>
-                </li>
-                <!-- #END# Full Screen Button -->
-                <!-- #START# Notifications-->
-                <li class="dropdown">
-                    <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
-                       role="button">
-                        <i data-feather="bell"></i>
-                        <span class="notify"></span>
-                        <span class="heartbeat"></span>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-warning">
+                                <i class="mdi mdi-settings mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-medium">Settings</h6>
+                            <p class="font-weight-light small-text mb-0">
+                                Private message
+                            </p>
+                        </div>
                     </a>
-                    <ul class="dropdown-menu pullDown">
-                        <li class="header">NOTIFICATIONS</li>
-                        <li class="body">
-                            <ul class="menu">
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user1.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">Sarah Smith</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 14 mins ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user2.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">Airi Satou</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 22 mins ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user3.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">John Doe</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 3 hours ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user4.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">Ashton Cox</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 2 hours ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user5.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">Cara Stevens</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 4 hours ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user6.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">Charde Marshall</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> 3 hours ago
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                            <span class="table-img msg-user">
-                                                <img src="{{ asset('backend/assets/images/user/user7.jpg') }}"
-                                                     alt="">
-                                            </span>
-                                        <span class="menu-info">
-                                                <span class="menu-title">John Doe</span>
-                                                <span class="menu-desc">
-                                                    <i class="material-icons">access_time</i> Yesterday
-                                                </span>
-                                                <span class="menu-desc">Please check your email.</span>
-                                            </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer">
-                            <a href="#" onClick="return false;">View All Notifications</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- #END# Notifications-->
-                <li class="dropdown user_profile">
-                    <div class="chip dropdown-toggle" data-bs-toggle="dropdown">
-                        <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->image) }}" alt="Contact Person">
-                        {{ \Illuminate\Support\Facades\Auth::user()->name }}
-                    </div>
-                    <ul class="dropdown-menu pullDown">
-                        <li class="body">
-                            <ul class="user_dw_menu">
-                                <li>
-                                    <a href="{{ route('admin.user.index') }}">
-                                        <i class="material-icons">person</i>Profil
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" onClick="return false;">
-                                        <i class="material-icons">feedback</i>Feedback
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('password.confirm') }}">
-                                        <i class="material-icons">lock</i>Ekranı Kilitle
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('logout') }}">
-                                        <i class="material-icons">power_settings_new</i>Çıkış Yap
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-info">
+                                <i class="mdi mdi-account-box mx-0"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <h6 class="preview-subject font-weight-medium">New user registration</h6>
+                            <p class="font-weight-light small-text mb-0">
+                                2 days ago
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                    <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->image) }}" alt="profile"/>
+                    <span class="nav-profile-name">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                    <a class="dropdown-item" href="{{ route('admin.user.index') }}">
+                        <i class="mdi mdi-account text-primary"></i>
+                        Profil
+                    </a>
+                    <a class="dropdown-item">
+                        <i class="mdi mdi-settings text-primary"></i>
+                        Ayarlar
+                    </a>
+                    <a class="dropdown-item" href="{{ route('password.confirm') }}">
+                        <i class="mdi mdi-lock text-primary"></i>
+                        Ekranı Kilitle
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}">
+                        <i class="mdi mdi-logout text-primary"></i>
+                        Çıkış Yap
+                    </a>
+                </div>
+            </li>
+            <li class="nav-item nav-toggler-item-right d-lg-none">
+                <button class="navbar-toggler align-self-center" type="button" data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </li>
+        </ul>
     </div>
 </nav>

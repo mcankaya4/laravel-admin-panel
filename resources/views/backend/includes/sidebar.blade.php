@@ -1,92 +1,103 @@
-<!-- Left Sidebar -->
-<aside id="leftsidebar" class="sidebar">
-    <!-- Menu -->
-    <div class="menu">
-        <ul class="list">
-            <li class="header">Menü</li>
-            <li class="{{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}">
-                <a href="{{ route('admin.index') }}">
-                    <i data-feather="home"></i>
-                    <span>Anasayfa</span>
-                </a>
-            </li>
-            <li class="{{ Request::is(['admin/about/*','admin/about']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="archive"></i>
-                    <span>Hakkımda Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.about.edit') ? 'active' : '' }}">
-                        <a href="{{ route('admin.about.edit') }}">Düzenle</a>
+<nav class="sidebar sidebar-offcanvas">
+    <ul class="nav">
+        <li class="nav-item {{ Route::currentRouteNamed('admin.index') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.index') }}">
+                <i class="mdi mdi-view-quilt menu-icon"></i>
+                <span class="menu-title">Anasayfa</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/about/*','admin/about']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#about" aria-expanded="false" aria-controls="about">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">Hakkımda</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/about/*','admin/about']) ? 'show' : '' }}" id="about">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.about.edit') ? 'active' : '' }}" href="{{ route('admin.about.edit') }}">Düzenle</a>
                     </li>
                 </ul>
-            </li>
-            <li class="{{ Request::is(['admin/slider/*','admin/slider']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="sliders"></i>
-                    <span>Slider Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.slider.edit') ? 'active' : '' }}">
-                        <a href="{{ route('admin.slider.edit') }}">Düzenle</a>
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/slider/*','admin/slider']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#slider" aria-expanded="false" aria-controls="slider">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">Slider</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/slider/*','admin/slider']) ? 'show' : '' }}" id="slider">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.slider.edit') ? 'active' : '' }}" href="{{ route('admin.slider.edit') }}">Düzenle</a>
                     </li>
                 </ul>
-            </li>
-            <li class="{{ Request::is(['admin/breadcrumb/*','admin/breadcrumb']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="image"></i>
-                    <span>İconlar Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.breadcrumb.index') ? 'active' : '' }}">
-                        <a href="{{ route('admin.breadcrumb.index') }}">Listele</a>
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/breadcrumb/*','admin/breadcrumb']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#icon" aria-expanded="false" aria-controls="icon">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">İconlar</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/breadcrumb/*','admin/breadcrumb']) ? 'show' : '' }}" id="icon">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.breadcrumb.index') ? 'active' : '' }}" href="{{ route('admin.breadcrumb.index') }}">Listele</a>
                     </li>
-                    <li class="{{ Route::currentRouteNamed('admin.breadcrumb.create') ? 'active' : '' }}">
-                        <a href="{{ route('admin.breadcrumb.create') }}">Ekle</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="{{ Request::is(['admin/portfolio/*','admin/portfolio']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="bookmark"></i>
-                    <span>Portfolyolar Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.portfolio.index') ? 'active' : '' }}">
-                        <a href="{{ route('admin.portfolio.index') }}">Listele</a>
-                    </li>
-                    <li class="{{ Route::currentRouteNamed('admin.portfolio.create') ? 'active' : '' }}">
-                        <a href="{{ route('admin.portfolio.create') }}">Ekle</a>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.breadcrumb.create') ? 'active' : '' }}" href="{{ route('admin.breadcrumb.create') }}">Ekle</a>
                     </li>
                 </ul>
-            </li>
-            <li class="{{ Request::is(['admin/category/*','admin/category']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="list"></i>
-                    <span>Kategoriler Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.category.index') ? 'active' : '' }}">
-                        <a href="{{ route('admin.category.index') }}">Listele ~ Ekle</a>
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/category/*','admin/category']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">Kategoriler</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/category/*','admin/category']) ? 'show' : '' }}" id="category">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.category.index') ? 'active' : '' }}" href="{{ route('admin.category.index') }}">Listele ~ Ekle</a>
                     </li>
                 </ul>
-            </li>
-            <li class="{{ Request::is(['admin/service/*','admin/service']) ? 'active' : '' }}">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="briefcase"></i>
-                    <span>Hizmetler Bölümü</span>
-                </a>
-                <ul class="ml-menu">
-                    <li class="{{ Route::currentRouteNamed('admin.service.index') ? 'active' : '' }}">
-                        <a href="{{ route('admin.service.index') }}">Listele</a>
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/portfolio/*','admin/portfolio']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#portfolio" aria-expanded="false" aria-controls="portfolio">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">Portfolyolar</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/portfolio/*','admin/portfolio']) ? 'show' : '' }}" id="portfolio">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.portfolio.index') ? 'active' : '' }}" href="{{ route('admin.portfolio.index') }}">Listele</a>
                     </li>
-                    <li class="{{ Route::currentRouteNamed('admin.service.create') ? 'active' : '' }}">
-                        <a href="{{ route('admin.service.create') }}">Ekle</a>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.portfolio.create') ? 'active' : '' }}" href="{{ route('admin.portfolio.create') }}">Ekle</a>
                     </li>
                 </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- #Menu -->
-</aside>
-<!-- #END# Left Sidebar -->
+            </div>
+        </li>
+        <li class="nav-item {{ Request::is(['admin/service/*','admin/service']) ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
+                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <span class="menu-title">Hizmetler</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ Request::is(['admin/service/*','admin/service']) ? 'show' : '' }}" id="service">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.service.index') ? 'active' : '' }}" href="{{ route('admin.service.index') }}">Listele</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.service.create') ? 'active' : '' }}" href="{{ route('admin.service.create') }}">Ekle</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>

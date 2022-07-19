@@ -1,73 +1,98 @@
 @extends('backend.layouts.master')
 
-@section('page_header')
-    <div class="row page-header">
-        <div class="col-lg-6 align-self-center ">
-            <h2>Bilgileri Değiştir</h2>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Anasayfa</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.user.index') }}">Profil</a></li>
-                <li class="breadcrumb-item active">Bilgileri Değiştir</li>
-            </ol>
-        </div>
-    </div>
+@section('js-in')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#image").change(function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="breadcrumb breadcrumb-style">
+                    <li>
+                        <h4 class="page-title">Profil Düzenle</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Input -->
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
-                <div class="card-header card-info">
-                    Profil Bilgileri Değiştirme Formu
+                <div class="header">
+                    <h2><strong>Profil Düzenleme Formu</strong></h2>
                 </div>
-                <div class="card-body">
-                    <form method="post" action="{{ route('admin.user.update') }}" enctype="multipart/form-data">
+                <div class="body">
+                    <form method="post" action="{{ route('admin.user.update') }}"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label>Profil Resmi</label>
-                            <div class="fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview" data-trigger="fileinput"
-                                     style="width: 160px; height:160px;">
-                                    <img class="img-fluid"
+                            <div class="form-line">
+                                <label class="form-lbl">Seçilen Profil Resmi</label>
+                                <div class="profile-image float-md-right">
+                                    <img width="150" height="150" style="border: 1px solid dimgray"
+                                         id="showImage"
                                          src="{{ asset(\Illuminate\Support\Facades\Auth::user()->image) }}">
                                 </div>
-                                <span class="btn btn-outline-primary btn-file">
-                                    <span class="fileinput-new">Profil Resmi Seç</span>
-                                    <span class="fileinput-exists">Başka Resim Seç</span>
-                                    <input type="file" id="image" name="image"
-                                           accept="image/jpeg, image/png, image/jpg">
-                                </span>
                             </div>
-                            @if($errors->has('image'))
-                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                            @endif
                         </div>
-                        <div class="form-group @if($errors->has('name')) has-error @endif">
-                            <label>Ad</label>
-                            <input type="text" name="name" class="form-control"
-                                   value="{{ \Illuminate\Support\Facades\Auth::user()->name }}">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Profil Resmi Seç</span>
+                                        <input type="file" name="image" id="image"
+                                               accept="image/jpeg, image/png, image/jpg">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text"
+                                               placeholder="Yükleme istediğiniz resmi seçiniz.">
+                                    </div>
+                                </div>
+                                @if($errors->has('image'))
+                                    <label class="error">{{ $errors->first('image') }}</label>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-line @if($errors->has('name')) error @endif">
+                                <label class="form-lbl">Ad</label>
+                                <input type="text" name="name" class="form-control"
+                                       value="{{ \Illuminate\Support\Facades\Auth::user()->name }}"/>
+                            </div>
                             @if($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                <label class="error">{{ $errors->first('name') }}</label>
                             @endif
                         </div>
-                        <div class="form-group @if($errors->has('email')) has-error @endif">
-                            <label>Email Adresi</label>
-                            <input type="email" name="email" class="form-control"
-                                   value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
+                        <div class="form-group">
+                            <div class="form-line @if($errors->has('email')) error @endif">
+                                <label class="form-lbl">Email Adresi</label>
+                                <input type="text" name="email" class="form-control"
+                                       value="{{ \Illuminate\Support\Facades\Auth::user()->email }}"/>
+                            </div>
                             @if($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                <label class="error">{{ $errors->first('email') }}</label>
                             @endif
                         </div>
-                        <br>
-                        <div class="form-group float-right">
-                            <button type="submit" class="btn btn-primary btn-icon"><i class="fa fa-floppy-o "></i>Kaydet
-                            </button>
-                            <a href="{{ url()->previous() }}" class="btn btn-teal btn-icon"><i class="fa fa-reply"></i>Geri
-                                Git</a>
-                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Güncelle</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-outline-danger a-btn">
+                            Geri Git
+                        </a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- #END# Input -->
 @endsection

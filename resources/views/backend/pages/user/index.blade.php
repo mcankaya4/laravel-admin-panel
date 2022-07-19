@@ -1,18 +1,6 @@
 @extends('backend.layouts.master')
 
 
-@section('page_header')
-    <div class="row page-header">
-        <div class="col-lg-6 align-self-center ">
-            <h2>Profil</h2>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Anasayafa</a></li>
-                <li class="breadcrumb-item active">Profil</li>
-            </ol>
-        </div>
-    </div>
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

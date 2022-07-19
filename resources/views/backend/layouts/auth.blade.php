@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <title>Blize - Admin Dashboard</title>
-    <!-- Favicon-->
-    <link rel="icon" href="{{ asset('backend/assets/images/favicon.ico') }}" type="image/x-icon">
-    <!-- Plugins Core Css -->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('backend/assets/css/pages/extra_pages.css') }}" rel="stylesheet"/>
-    <!-- Custom Css -->
-    <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet"/>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>CalmUI Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('backend/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/vendors/css/vendor.bundle.base.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('backend/images/favicon.png') }}" />
 </head>
 
-<body>
-<div class="limiter">
-    <div class="container-login100">
-        <div class="wrap-login100">
-            @yield('content')
-            <div class="login100-more"
-                 style="background-image: url('{{ asset('backend/assets/images/pages/auth.png') }}');">
+<body class="sidebar-light">
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth">
+            <div class="row w-100">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auth-form-light text-left p-5">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
         </div>
+        <!-- content-wrapper ends -->
     </div>
+    <!-- page-body-wrapper ends -->
 </div>
-
-<!-- Plugins Js -->
-<script src="{{ asset('backend/assets/js/app.min.js') }}"></script>
-<!-- Extra page Js -->
-<script src="{{ asset('backend/assets/js/pages/examples/pages.js') }}"></script>
+<!-- container-scroller -->
+<script src="{{ asset('backend/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{{ asset('backend/js/off-canvas.js') }}"></script>
+<script src="{{ asset('backend/js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('backend/js/template.js') }}"></script>
 </body>
+
 </html>
+

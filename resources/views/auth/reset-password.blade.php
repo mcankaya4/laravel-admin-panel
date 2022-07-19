@@ -1,11 +1,17 @@
 @extends('backend.layouts.auth')
 
-
 @section('content')
-    <form class="login100-form" method="POST" action="{{ route('password.update') }}">
+    <div class="brand-logo">
+        <img src="{{ asset('backend/images/logo.svg') }}" alt="logo">
+    </div>
+    <h4>Yeni Şifre Belirle</h4>
+    <form class="pt-3" method="POST" action="{{ route('password.update') }}">
         @csrf
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-        <span class="login100-form-title p-b-45">Yeni Şifre Belirle</span>
+        @if(session('status'))
+            <div class="alert alert-info rounded">
+                <strong>İşlem başarılı!</strong> Yeni şifrenizle giriş yapabilirsiniz.
+            </div>
+        @endif
         @if($errors->any())
             <div class="alert alert-danger rounded">
                 @foreach ($errors->all() as $error)
@@ -13,28 +19,23 @@
                 @endforeach
             </div>
         @endif
-        <div class="wrap-input100">
-            <input class="input100" type="text" name="email" placeholder="Email" value="{{ $request->get('email') }}">
+        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+        <div class="form-group">
+            <input type="email" name="email" class="form-control form-control-lg" placeholder="E-Posta Adresi" value="{{ $request->get('email') }}">
         </div>
-        <div class="wrap-input100">
-            <input class="input100" type="password" name="password" placeholder="Yeni Şifre">
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="password" name="password" placeholder="Yeni Şifre">
         </div>
-        <div class="wrap-input100">
-            <input class="input100" type="password" name="password_confirmation" placeholder="Yeni Şifre Tekrar">
+        <div class="form-group">
+            <input class="form-control form-control-lg" type="password" name="password_confirmation" placeholder="Yeni Şifre Tekrar">
         </div>
-        <div class="container-login100-form-btn p-t-30">
-            <button type="submit" class="login100-form-btn">
+        <div class="mt-3">
+            <button type="submit" class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn">
                 Kaydet
             </button>
         </div>
-        <div class="w-full p-t-25 text-center">
-            <div>
-                <a href="{{ route('login') }}" class="txt1">
-                    Giriş Yap?
-                </a>
-            </div>
-        </div>
     </form>
 @endsection
+
 
 

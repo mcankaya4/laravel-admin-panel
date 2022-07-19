@@ -1,45 +1,29 @@
 @extends('backend.layouts.auth')
 
 @section('content')
-    <form class="login100-form" method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-        <div class="login100-form-logo">
-            <div class="image">
-                <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->image) }}" alt="User">
+    <div class="text-center">
+        <img src="{{ asset(\Illuminate\Support\Facades\Auth::user()->image) }}" class="lock-profile-img" alt="img">
+        <form class="pt-2" action="{{ route('password.confirm') }}" method="POST">
+            @csrf
+            <p class="text-muted">{{ \Illuminate\Support\Facades\Auth::user()->email }}</p>
+            @if($errors->any())
+                <div class="alert alert-danger rounded">
+                    @foreach ($errors->all() as $error)
+                        * {{ $error }} <br>
+                    @endforeach
+                </div>
+            @endif
+            <div class="form-group">
+                <input type="password" name="password" class="form-control form-control-lg" placeholder="Şifre">
             </div>
-        </div>
-        <span class="login100-form-title p-b-34 p-t-27">
-						{{ \Illuminate\Support\Facades\Auth::user()->name }}
-					</span>
-        <div class="text-center">
-            <p class="txt1 p-b-20">
-                Kilitli
-            </p>
-        </div>
-        @if($errors->any())
-            <div class="alert alert-danger rounded">
-                @foreach ($errors->all() as $error)
-                    * {{ $error }} <br>
-                @endforeach
+            <div class="mt-1">
+                <button type="submit" class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn">Giriş Yap</button>
             </div>
-        @endif
-        <div class="wrap-input100">
-            <input class="input100" type="password" name="password" placeholder="Şifre">
-        </div>
-        <div class="container-login100-form-btn p-t-30">
-            <button type="submit" class="login100-form-btn">
-                Giriş
-            </button>
-        </div>
-
-        <div class="w-full p-t-15 p-b-15 text-center">
-            <div>
-                <a class="txt1" href="{{ route('password.request') }}">
-                    Şifremi unuttum?
-                </a>
+            <div class="mt-3 text-center">
+                <a href="{{ route('login') }}" class="auth-link text-muted">Farkı bir kullanıcı ile giriş yap!</a>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 @endsection
 
 
