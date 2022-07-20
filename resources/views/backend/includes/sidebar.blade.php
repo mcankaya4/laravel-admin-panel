@@ -8,7 +8,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/about/*','admin/about']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#about" aria-expanded="false" aria-controls="about">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-clipboard-account-outline menu-icon"></i>
                 <span class="menu-title">Hakkımda</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -22,7 +22,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/slider/*','admin/slider']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#slider" aria-expanded="false" aria-controls="slider">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-camera-image menu-icon"></i>
                 <span class="menu-title">Slider</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -36,7 +36,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/breadcrumb/*','admin/breadcrumb']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#icon" aria-expanded="false" aria-controls="icon">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-image-album menu-icon"></i>
                 <span class="menu-title">İconlar</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -53,7 +53,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/category/*','admin/category']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-format-list-triangle menu-icon"></i>
                 <span class="menu-title">Kategoriler</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -67,7 +67,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/portfolio/*','admin/portfolio']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#portfolio" aria-expanded="false" aria-controls="portfolio">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-bookmark-minus-outline menu-icon"></i>
                 <span class="menu-title">Portfolyolar</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -84,7 +84,7 @@
         </li>
         <li class="nav-item {{ Request::is(['admin/service/*','admin/service']) ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#service" aria-expanded="false" aria-controls="service">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
+                <i class="mdi mdi-server-network menu-icon"></i>
                 <span class="menu-title">Hizmetler</span>
                 <i class="menu-arrow"></i>
             </a>
