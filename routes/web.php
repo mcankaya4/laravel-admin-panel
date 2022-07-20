@@ -102,6 +102,10 @@ Route::middleware('auth')
             ->group(function () {
                 Route::get('/edit', 'edit')->name('edit');
                 Route::post('/update', 'update')->name('update');
+                Route::get('/edit-meta', 'editmeta')->name('edit.meta');
+                Route::post('/update-meta', 'updatemeta')->name('update.meta');
+                Route::get('/edit-skills', 'editskills')->name('edit.skills');
+                Route::post('/update-skills', 'updateskills')->name('update.skills');
             });
 
         Route::controller(BackendUser::class)

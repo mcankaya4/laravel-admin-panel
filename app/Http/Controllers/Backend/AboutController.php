@@ -15,7 +15,6 @@ class AboutController extends Controller
     {
         return view('backend.pages.about.edit', [
             'about' => About::findOrFail(1),
-            'skills' => Skill::all(),
         ]);
     }
 
@@ -26,9 +25,6 @@ class AboutController extends Controller
             'short_title' => 'required',
             'short_desc' => 'required',
             'desc' => 'required',
-            'page_title' => 'required',
-            'page_desc' => 'required',
-            'page_key' => 'required',
         ]);
 
         $update_item = About::find(1);
@@ -36,10 +32,10 @@ class AboutController extends Controller
         $update_item->desc = $request->desc;
         $update_item->short_desc = $request->short_desc;
         $update_item->short_title = $request->short_title;
-        $update_item->page_title = $request->page_title;
-        $update_item->page_desc = $request->page_desc;
-        $update_item->page_key = $request->page_key;
         if ($request->image) {
+            $request->validate([
+                'image' => 'mimes:png,jpg,jpeg',
+            ]);
             File::delete(public_path($update_item->image));
 
             $extension = $request->image->getClientOriginalExtension();
@@ -52,19 +48,61 @@ class AboutController extends Controller
         }
         $update_item->save();
 
+        return redirect()->route('admin.about.edit')->with([
+            'title' => 'Tebrikler!',
+            'message' => 'Güncelleme işlemi başarılı.',
+            'type' => 'success'
+        ]);
+    }
 
+    public function editmeta()
+    {
+        return view('backend.pages.about.edit-meta', [
+            'about' => About::findOrFail(1),
+        ]);
+    }
+
+    public function updatemeta(Request $request)
+    {
+        $request->validate([
+            'page_title' => 'required',
+            'page_desc' => 'required',
+            'page_key' => 'required',
+        ]);
+
+        $update_item = About::find(1);
+        $update_item->page_title = $request->page_title;
+        $update_item->page_desc = $request->page_desc;
+        $update_item->page_key = $request->page_key;
+        $update_item->save();
+
+        return redirect()->route('admin.about.edit.meta')->with([
+            'title' => 'Tebrikler!',
+            'message' => 'Güncelleme işlemi başarılı.',
+            'type' => 'success'
+        ]);
+    }
+
+    public function editskills()
+    {
+        return view('backend.pages.about.edit-skills', [
+            'skills' => Skill::all(),
+        ]);
+    }
+
+    public function updateskills(Request $request)
+    {
         Skill::truncate();
-        foreach ($request->skill_title as $k => $t){
+        foreach ($request->skill_title as $k => $t) {
             Skill::create([
                 'title' => $t,
                 'value' => $request->skill_value[$k]
             ]);
         }
 
-
-        return redirect()->route('admin.about.edit')->with([
+        return redirect()->route('admin.about.edit.skills')->with([
             'title' => 'Tebrikler!',
-            'message' => 'Hakkımızda sayfası güncelledi.',
+            'message' => 'Güncelleme işlemi başarılı.',
             'type' => 'success'
         ]);
     }

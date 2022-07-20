@@ -15,7 +15,13 @@
             <div class="collapse {{ Request::is(['admin/about/*','admin/about']) ? 'show' : '' }}" id="about">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteNamed('admin.about.edit') ? 'active' : '' }}" href="{{ route('admin.about.edit') }}">Düzenle</a>
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.about.edit') ? 'active' : '' }}" href="{{ route('admin.about.edit') }}">Genel</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.about.edit.meta') ? 'active' : '' }}" href="{{ route('admin.about.edit.meta') }}">Meta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteNamed('admin.about.edit.skills') ? 'active' : '' }}" href="{{ route('admin.about.edit.skills') }}">Yetenekler</a>
                     </li>
                 </ul>
             </div>

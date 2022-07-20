@@ -48,7 +48,7 @@ class UserController extends Controller
 
         return redirect()->route('admin.user.edit')->with([
             'title' => 'Tebrikler',
-            'message' => 'Profil bilgileri güncellendi.',
+            'message' => 'Güncelleme işlemi başarılı.',
             'type' => 'success'
         ]);
     }
@@ -79,7 +79,7 @@ class UserController extends Controller
         ]);
         return redirect()->route('admin.user.edit.password')->with([
             'title' => 'Tebrikler!',
-            'message' => 'Şifre değiştirildi.',
+            'message' => 'Güncelleme işlemi başarılı.',
             'type' => 'success'
         ]);
     }
