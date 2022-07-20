@@ -52,18 +52,6 @@
     </script>
 @endsection
 
-@section('page_header')
-    <div class="row page-header">
-        <div class="col-lg-6 align-self-center ">
-            <h2>Hakkımda Sayfasını Güncelle</h2>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Anasayfa</a></li>
-                <li class="breadcrumb-item active">Hakkımda Sayfasını Güncelle</li>
-            </ol>
-        </div>
-    </div>
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">

@@ -108,7 +108,6 @@ Route::middleware('auth')
             ->prefix('user')
             ->as('user.')
             ->group(function () {
-                Route::get('/', 'index')->name('index');
                 Route::get('/edit', 'edit')->name('edit');
                 Route::get('/editpassword', 'editpassword')->name('edit.password');
                 Route::post('/update', 'update')->name('update');

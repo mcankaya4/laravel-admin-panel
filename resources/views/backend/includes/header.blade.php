@@ -73,9 +73,13 @@
                     <span class="nav-profile-name">{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route('admin.user.index') }}">
+                    <a class="dropdown-item" href="{{ route('admin.user.edit') }}">
                         <i class="mdi mdi-account text-primary"></i>
-                        Profil
+                        Profil Bilgileri
+                    </a>
+                    <a class="dropdown-item" href="{{ route('admin.user.edit.password') }}">
+                        <i class="mdi mdi-lock-reset text-primary"></i>
+                        Şifre Değiştir
                     </a>
                     <a class="dropdown-item">
                         <i class="mdi mdi-settings text-primary"></i>

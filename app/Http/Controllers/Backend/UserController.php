@@ -46,7 +46,7 @@ class UserController extends Controller
         }
         $update_item->save();
 
-        return redirect()->route('admin.user.index')->with([
+        return redirect()->route('admin.user.edit')->with([
             'title' => 'Tebrikler',
             'message' => 'Profil bilgileri güncellendi.',
             'type' => 'success'
@@ -77,7 +77,7 @@ class UserController extends Controller
         User::find(Auth::id())->update([
             'password' => Hash::make($request->new_password)
         ]);
-        return redirect()->route('admin.user.index')->with([
+        return redirect()->route('admin.user.edit.password')->with([
             'title' => 'Tebrikler!',
             'message' => 'Şifre değiştirildi.',
             'type' => 'success'
