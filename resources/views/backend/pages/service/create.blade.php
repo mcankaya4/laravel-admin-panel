@@ -1,6 +1,26 @@
 @extends('backend.layouts.master')
 
 @section('js-in')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#image").change(function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+        $(document).ready(function () {
+            $("#image2").change(function (e) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#showImage2').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
     <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <script>
         var options = {
@@ -16,98 +36,102 @@
     </script>
 @endsection
 
-@section('page_header')
-    <div class="row page-header">
-        <div class="col-lg-6 align-self-center ">
-            <h2>Yeni Hizmet Ekle</h2>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Anasayfa</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin.service.index') }}">Hizmetler</a></li>
-                <li class="breadcrumb-item active">Yeni Hizmet Ekle</li>
-            </ol>
-        </div>
-    </div>
-@endsection
-
 @section('content')
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-12 grid-margin stretch-card">
             <div class="card">
-                <div class="card-header card-info">
-                    Hizmet Ekleme Formu
-                </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('admin.service.store') }}" enctype="multipart/form-data">
+                    <h4 class="card-title text-primary"><strong>Yeni Hizmet Ekleme Formu</strong></h4>
+                    <form method="post" action="{{ route('admin.service.store') }}"
+                          enctype="multipart/form-data" class="forms-sample">
                         @csrf
-                        <div class="form-group">
-                            <label>Hizmet Resmi</label>
-                            <div class="fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview" data-trigger="fileinput"
-                                     style="width: 160px; height:160px;">
-                                    <img src="{{ asset('uploads/img/portfolio/no_image.jpg') }}" class="img-fluid"
-                                         alt="">
+                        {{-- image --}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Seçilen Hizmet Resmi</label>
+                                    <div class="">
+                                        <img width="150" height="150" class="img-lg-rounded"
+                                             style="border: 1px solid #4f4a60"
+                                             id="showImage"
+                                             src="{{ asset('uploads/img/portfolio/no_image.jpg') }}">
+                                    </div>
                                 </div>
-                                <span class="btn btn-outline-primary btn-file">
-                                    <span class="fileinput-new">Hizmet Resmi Seç</span>
-                                    <span class="fileinput-exists">Başka Resim Seç</span>
-                                    <input type="file" id="image" name="image"
-                                           accept="image/jpeg, image/png, image/jpg">
+                                <div class="form-group">
+                                    <input type="file" name="image" id="image" accept="image/jpeg, image/png, image/jpg"
+                                           class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-dark" type="button">Resim Seç</button>
                                 </span>
-                            </div>
-                            @if($errors->has('image'))
-                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Hizmet İconu</label>
-                            <div class="fileinput-new" data-provides="fileinput">
-                                <div class="fileinput-preview" data-trigger="fileinput"
-                                     style="width: 160px; height:160px;">
-                                    <img src="{{ asset('uploads/img/portfolio/no_image.jpg') }}" class="img-fluid"
-                                         alt="">
+                                        <input type="text" class="form-control file-upload-info" disabled
+                                               placeholder="Seçilen Resim">
+                                    </div>
+                                    @if($errors->has('image'))
+                                        <label class="error mt-2 text-danger">{{ $errors->first('image') }}</label>
+                                    @endif
                                 </div>
-                                <span class="btn btn-outline-primary btn-file">
-                                    <span class="fileinput-new">İconu Seç</span>
-                                    <span class="fileinput-exists">Başka Seç</span>
-                                    <input type="file" id="icon" name="icon"
-                                           accept="image/png">
-                                </span>
                             </div>
-                            @if($errors->has('icon'))
-                                <span class="text-danger">{{ $errors->first('icon') }}</span>
-                            @endif
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Seçilen Hizmet İconu</label>
+                                    <div class="">
+                                        <img width="150" height="150" class="img-lg-rounded"
+                                             style="border: 1px solid #4f4a60"
+                                             id="showImage2"
+                                             src="{{ asset('uploads/img/portfolio/no_image.jpg') }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" name="icon" id="image2" accept="image/png"
+                                           class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-dark" type="button">İcon Seç</button>
+                                </span>
+                                        <input type="text" class="form-control file-upload-info" disabled
+                                               placeholder="Seçilen Resim">
+                                    </div>
+                                    @if($errors->has('icon'))
+                                        <label class="error mt-2 text-danger">{{ $errors->first('icon') }}</label>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group @if($errors->has('title')) has-error @endif">
-                            <label>Başlık</label>
-                            <input type="text" name="title" class="form-control">
+                        {{-- title --}}
+                        <div class="form-group">
+                            <label>Hizmet Başlığı</label>
+                            <input type="text" name="title"
+                                   class="form-control @if($errors->has('title')) border-danger @endif"/>
                             @if($errors->has('title'))
-                                <span class="text-danger">{{ $errors->first('title') }}</span>
+                                <label class="error mt-2 text-danger">{{ $errors->first('title') }}</label>
                             @endif
                         </div>
-                        <div class="form-group @if($errors->has('short_desc')) has-error @endif">
+                        {{-- short_desc --}}
+                        <div class="form-group">
                             <label>Kısa Açıklama</label>
-                            <input type="text" name="short_desc" class="form-control">
+                            <input type="text" name="short_desc"
+                                   class="form-control @if($errors->has('short_desc')) border-danger @endif"/>
                             @if($errors->has('short_desc'))
-                                <span class="text-danger">{{ $errors->first('short_desc') }}</span>
+                                <label class="error mt-2 text-danger">{{ $errors->first('short_desc') }}</label>
                             @endif
                         </div>
-                        <div class="form-group @if($errors->has('desc')) has-error @endif">
-                            <label>Açıklama</label>
-                            <textarea name="desc" class="my-editor form-control" id="my-editor"></textarea>
+                        {{-- desc --}}
+                        <div class="form-group">
+                            <label>Detaylı Açıklama</label>
+                            <textarea name="desc" class="my-editor form-control" id="my-editor"
+                                      rows="10"></textarea>
                             @if($errors->has('desc'))
-                                <span class="text-danger">{{ $errors->first('desc') }}</span>
+                                <label class="error mt-2 text-danger">{{ $errors->first('desc') }}</label>
                             @endif
                         </div>
-                        <br>
-                        <div class="form-group float-right">
-                            <button type="submit" class="btn btn-primary btn-icon"><i class="fa fa-floppy-o "></i>Kaydet
-                            </button>
-                            <a href="{{ url()->previous() }}" class="btn btn-teal btn-icon"><i class="fa fa-reply"></i>Geri
-                                Git</a>
-                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Kaydet</button>
+                        <a href="{{ url()->previous() }}" class="btn btn-light">Geri Git</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+
