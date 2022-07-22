@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('backend/vendors/jquery-toast-plugin/jquery.toast.min.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('backend/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
+    <!-- End plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('backend/css/vertical-layout-light/style.css') }}">
